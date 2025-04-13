@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from telethon.tl.functions.messages import CreateChatRequest  # type: ignore
 
-from schemas.chat import AddChatDTO
-from telegram.core_userbot import core_user_bot
+from api.schemas.chat import AddChatDTO
+from api.telegram.core_userbot import core_user_bot
 
 
 router = APIRouter(

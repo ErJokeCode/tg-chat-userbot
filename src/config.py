@@ -7,11 +7,19 @@ _log = logging.getLogger(__name__)
 class Settings(BaseSettings):
     URL_CORS: str
 
+    URL_CORE_SERVER: str
+
     TG_API_ID: int
     TG_API_HASH: str
     TG_PHONE: str
     TG_SESSION_NAME: str
     TG_2FA_PASSWORD: str
+
+    TG_TOKEN_CHAT_BOT: str
+    TG_TOKEN_INFO_BOT: str
+    URL_REDIS: str
+    URL_BOT_CHAT_CURATOR: str
+    AUTH_CORE_SERVER: str
 
     def __init__(self):
         super().__init__(

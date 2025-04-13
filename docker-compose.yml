@@ -1,32 +1,46 @@
 services:
   api:
     container_name: bot_api
-    restart: always
-    build: ./api
+    build: .
+    command: python src/api/main.py
     ports:
       - "8010:8000"
     volumes:
-      - .:/app/bot_api
+      - .:/app
+    working_dir: /app
     networks:
       - web_network
 
   chat_bot:
-    container_name: chat_curator_bot
-    restart: always
-    build: ./chat_bot
+    container_name: chat_bot
+    build: .
+    command: python src/chat_bot/main.py
     volumes:
-      - .:/app/chat_bot
+      - .:/app
+    working_dir: /app
     networks:
       - web_network
 
   info_bot:
-    container_name: information_bot
-    restart: always
-    build: ./info_bot
+    container_name: info_bot
+    build: .
+    command: python src/info_bot/main.py
     volumes:
-      - .:/app/info_bot
+      - .:/app
+    working_dir: /app
     networks:
       - web_network
+
+  bot_redis:
+    image: redis
+    volumes:
+      - bot_redis:/var/lib/bot_redis
+    networks:
+      - web_network
+
+volumes:
+  bot_redis:
+
 
 networks:
   web_network:

@@ -4,11 +4,15 @@ from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))  # noqa
+
 from config import settings
 
-from routers.chat import router as r_chat
+from api.routers.chat import router as r_chat
 
-from telegram.core_userbot import core_user_bot
+from api.telegram.core_userbot import core_user_bot
 
 _log = logging.getLogger(__name__)
 
@@ -43,5 +47,10 @@ app.add_middleware(
 
 app.include_router(r_chat)
 
-if __name__ == "__main__":
+
+def main():
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
+
+if __name__ == "__main__":
+    main()
