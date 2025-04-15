@@ -11,6 +11,8 @@ sys.path.append(str(Path(__file__).parent.parent))  # noqa
 from config import settings
 
 from api.routers.chat import router as r_chat
+from api.routers.chat_student import router as r_chat_student
+from api.routers.notifications import router as r_notifications
 
 from api.telegram.core_userbot import core_user_bot
 
@@ -46,6 +48,8 @@ app.add_middleware(
 )
 
 app.include_router(r_chat)
+app.include_router(r_chat_student)
+app.include_router(r_notifications)
 
 
 def main():

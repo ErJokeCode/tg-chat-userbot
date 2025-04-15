@@ -21,6 +21,12 @@ class Settings(BaseSettings):
     URL_BOT_CHAT_CURATOR: str
     AUTH_CORE_SERVER: str
 
+    POSTGRES_HOST: str
+    POSTGRES_PORT: int
+    POSTGRES_USER: str
+    POSTGRES_PASSWORD: str
+    POSTGRES_DB: str
+
     def __init__(self):
         super().__init__(
             _env_file=".env",
@@ -39,6 +45,11 @@ class Settings(BaseSettings):
     @property
     def LIST_CORS(self):
         return self.URL_CORS.split(",")
+
+    @property
+    def DATABASE_URL_asyncpg(self):
+        # postgresql+asyncpg://postgres:postgres@localhost:5432/sa
+        return f"postgresql+asyncpg://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
 
 
 settings = Settings()

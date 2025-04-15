@@ -38,8 +38,21 @@ services:
     networks:
       - web_network
 
+  postgresql:
+    image: postgres:latest
+    container_name: postgres_bot
+    ports:
+      - "5433:5432"
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - web_network
+
 volumes:
   bot_redis:
+  postgres_data:
 
 
 networks:

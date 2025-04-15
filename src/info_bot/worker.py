@@ -116,11 +116,11 @@ class Worker:
                 if self.count_error_connect != 0:
                     self.count_error_connect = 0
             except Exception as e:
-                self.count_error_connect += 1
+                # self.count_error_connect += 1
 
-                if self.count_error_connect >= 5:
-                    _log.error("Exit")
-                    exit()
+                # if self.count_error_connect >= 5:
+                #     _log.error("Exit")
+                #     exit()
 
                 _log.error(e)
 
